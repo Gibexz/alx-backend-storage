@@ -10,7 +10,7 @@ def update_topics(mongo_collection, name, topics):
     based on the name
     """
     if mongo_collection is not None:
-        mongo_collection.update_one(
+        mongo_collection.update_many(
             {"name": name},
             {"$set": {"topics": topics}}
         )
