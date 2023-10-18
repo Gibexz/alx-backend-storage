@@ -14,3 +14,15 @@ print(key)
 
 local_redis = redis.Redis()
 print(local_redis.get(key))
+
+cache1 = Cache()
+
+TEST_CASES = {
+    b"foo": None,
+    123: int,
+    "bar": lambda d: d.decode("utf-8")
+}
+
+for value, fn in TEST_CASES.items():
+    key = cache1.store(value)
+    assert cache1.get(key, fn=fn) == value
