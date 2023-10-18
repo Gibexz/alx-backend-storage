@@ -2,7 +2,7 @@
 """
 module: exercise.py
 """
-from typing import Union
+from typing import Any, Union
 import redis
 import uuid
 from functools import wraps
@@ -13,7 +13,7 @@ def count_calls(method: callable) -> callable:
     Tracks the number of calls made to a method in a Cache class.
     """
     @wraps(method)
-    def wrapper(self, *args, **kwargs):
+    def wrapper(self, *args, **kwargs) -> Any:
         """
         returns the given method after incrementing its call counter
         """
